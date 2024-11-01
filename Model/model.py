@@ -1,5 +1,4 @@
 from Utils import Variable, Function
-import math
 import matplotlib.pyplot as plt
 from loguru import logger
 from pprint import pprint
@@ -224,20 +223,6 @@ class Model:
                 
         self.compute[t2] = (self.x_zero, self.y_zero, self.w_zero, self.z_zero, self.tau1, self.tau2)
         
-            
-            
-            
-            
-
-        
-        
-
-
-
-
-
-       
-   
 
     def __call__(self):
         # Пример использования метода find_t0
@@ -263,13 +248,17 @@ x = [values[0] for values in model.compute.values()]
 y = [values[1] for values in model.compute.values()]
 w = [values[2] for values in model.compute.values()]
 z = [values[3] for values in model.compute.values()]
-
+tau1 = [values[4] for values in model.compute.values()]
+tau2 = [values[5] for values in model.compute.values()]
 
 plt.figure(figsize=(12, 6))
 plt.plot(t, x, label='x(t) - concentration of free antigen molecules at time t ', color='blue')
 plt.plot(t, y, label='y(t) - concentration of free receptor molecules at time t', color='orange')
 plt.plot(t, w, label='w(t) - concentration of antigen bound to receptor molecules at time t ', color='green')
 plt.plot(t, z, label='z(t) - concentration of free antibody molecules at time t ', color='yellow')
+
+
+
 
 
 # Настройки графика
