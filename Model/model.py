@@ -256,7 +256,8 @@ plt.plot(t, x, label='x(t) - concentration of free antigen molecules at time t '
 plt.plot(t, y, label='y(t) - concentration of free receptor molecules at time t', color='orange')
 plt.plot(t, w, label='w(t) - concentration of antigen bound to receptor molecules at time t ', color='green')
 plt.plot(t, z, label='z(t) - concentration of free antibody molecules at time t ', color='yellow')
-
+# plt.plot(t, tau1, label='t1(t)', color='blue')
+# plt.plot(t, tau2, label='t2(t)', color='purple')
 
 
 
