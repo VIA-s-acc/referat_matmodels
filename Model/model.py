@@ -2,7 +2,7 @@ from Utils import Variable, Function
 import matplotlib.pyplot as plt
 from loguru import logger
 from pprint import pprint
-
+from argparse import ArgumentParser
 class Var:
     r = Variable("r")
     t = Variable("t")
@@ -55,10 +55,9 @@ class ModelInit:
     s = 0.05
     m1 = 15
     m2 = 15
-    gamma_start = 0
-    step = 0.01
-    max_time = 50
-    max_time_afterf3 = 10
+    step = 0.1
+    max_time = 100
+    max_time_afterf3 = 50
     eps = 3e-2
 
 
@@ -239,6 +238,20 @@ class Model:
 
 # Создание модели
 model = Model(ModelInit.x_zero, ModelInit.y_zero, ModelInit.w_zero, ModelInit.z_zero, ModelInit.alpha, ModelInit.beta, ModelInit.gamma, ModelInit.r, ModelInit.s, ModelInit.m1, ModelInit.m2, ModelInit.step)
+parser = ArgumentParser(prog='Waltman Model')
+parser.add_argument('-p', nargs = '*', default = None, help = 'functions to plot', required=False)
+args = parser.parse_args()
+
+
+class Args:
+    x,y,w,z,t1,t2 = False,False,False,False,False,False
+    if args.p:
+        x = 'x' in args.p
+        y = 'y' in args.p
+        w = 'w' in args.p
+        z = 'z' in args.p
+        t1 = 't1' in args.p
+        t2 = 't2' in args.p
 
 # Запуск модели
 result = model()
@@ -252,17 +265,24 @@ tau1 = [values[4] for values in model.compute.values()]
 tau2 = [values[5] for values in model.compute.values()]
 
 plt.figure(figsize=(12, 6))
-plt.plot(t, x, label='x(t) - concentration of free antigen molecules at time t ', color='blue')
-plt.plot(t, y, label='y(t) - concentration of free receptor molecules at time t', color='orange')
-plt.plot(t, w, label='w(t) - concentration of antigen bound to receptor molecules at time t ', color='green')
-plt.plot(t, z, label='z(t) - concentration of free antibody molecules at time t ', color='yellow')
-# plt.plot(t, tau1, label='t1(t)', color='blue')
-# plt.plot(t, tau2, label='t2(t)', color='purple')
+if Args.x:
+	plt.plot(t, x, label='x(t) - concentration of free antigen molecules at time t ', color='blue')
+if Args.y:
+	plt.plot(t, y, label='y(t) - concentration of free receptor molecules at time t', color='orange')
+if Args.w:
+	plt.plot(t, w, label='w(t) - concentration of antigen bound to receptor molecules at time t ', color='green')
+if Args.z:
+	plt.plot(t, z, label='z(t) - concentration of free antibody molecules at time t ', color='yellow')
+if Args.t1:
+	plt.plot(t, tau1, label='tau1(t)', color='blue')
+if Args.t2:
+	plt.plot(t, tau2, label='tau2(t)', color='purple')
 
 
 
 
 # Настройки графика
+
 plt.title('Графики функций x(t), y(t), w(t), z(t)')
 plt.xlabel('Время (t)')
 plt.ylabel('Значения')
