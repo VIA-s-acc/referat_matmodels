@@ -12,7 +12,7 @@
 
 ## Статья
 
-[Пороговая модель антиген-стимулированного производства антител](https://www.overleaf.com/read/jtndgppwzpkw#1788f1)
+[Пороговая модель антиген-стимулированного производства антител](https://www.overleaf.com/read/rdwpdjfsdzfd#7db9c9)
 
 ## Литература
 Waltman P. a threshold model of antigen-stimulated antibody production. In: Theoretical Immunology (George I. Bell, Alan S. Perelson, George H. Pimbley, Jr . (eds.)). N.Y. : M. Dekker, 1978, 437-453. 
